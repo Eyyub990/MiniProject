@@ -2,19 +2,11 @@
 
 namespace WebUI.Controllers
 {
-    public class HomeController : Controller
+    public class PortfolioController : Controller
     {
         public IActionResult Index()
         {
             return View();
         }
-
-
-        public IActionResult Contact()
-        {
-            return View();
-        }
-
-
     }
 }
