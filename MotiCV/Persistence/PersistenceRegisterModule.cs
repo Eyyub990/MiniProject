@@ -1,9 +1,10 @@
 ﻿using Autofac;
 using Microsoft.EntityFrameworkCore;
+using Persistence.Contexts;
 
 namespace Persistence
 {
-    public class PersistenceRegisterModule : Autofac.Module
+    public class PersistenceRegisterModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
@@ -13,7 +14,7 @@ namespace Persistence
                 .AsImplementedInterfaces()
                 .InstancePerLifetimeScope();
 
-            builder.RegisterType<DbContext>()
+            builder.RegisterType<DataContext>()
                 .As<DbContext>()
                 .InstancePerLifetimeScope();
         }

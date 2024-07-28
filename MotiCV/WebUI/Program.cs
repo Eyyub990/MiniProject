@@ -1,5 +1,6 @@
 using Domain.Configurations;
 using Microsoft.EntityFrameworkCore;
+using Persistence.Contexts;
 
 namespace WebUI
 {
@@ -11,7 +12,7 @@ namespace WebUI
 
             builder.Services.AddControllersWithViews();
 
-            //builder.Host.UseServiceProviderFactory(new IoCFactory());
+            builder.Host.UseServiceProviderFactory(new IoCFactory());
 
             builder.Services.AddRouting(cfg => cfg.LowercaseUrls = true);
 

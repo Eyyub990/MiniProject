@@ -2,7 +2,7 @@
 
 namespace Domain.Entities
 {
-    public class Person
+    public class Person : ICreateEntity
     {
         public int Id { get; set; }
         public string? FullName { get; set; }

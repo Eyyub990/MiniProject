@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="~/assets/css/main.css">
     <link rel="stylesheet" href="~/assets/css/style.css">
     <link rel="stylesheet" href="~/assets/css/responsive.css">
+    <link rel="stylesheet" href="~/lib/toastr.js/toastr.css">
+    <link rel="stylesheet" href="~/lib/toastr.js/toastr.js.map">
 
     <!-- FontsOnline -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
@@ -179,21 +181,26 @@
                                 <div id="contact_message" class="success-msg"> <i class="fa fa-paper-plane-o"></i>Thank You. Your Message has been Submitted</div>
 
                                 <!-- FORM -->
-                                <form role="form" id="contact_form" class="contact-form" method="post" onSubmit="return false">
+                                <form id="frm" class="contact-form" method="post">
                                     <ul class="row">
                                         <li class="col-sm-12">
                                             <label>
-                                                <input type="text" class="form-control" name="email" id="email" placeholder="Email">
+                                                <input type="text" class="form-control" name="name" placeholder="Full Name">
                                             </label>
                                         </li>
                                         <li class="col-sm-12">
                                             <label>
-                                                <input type="text" class="form-control" name="company" id="company" placeholder="Subject">
+                                                <input type="text" class="form-control" name="email" placeholder="Email">
                                             </label>
                                         </li>
                                         <li class="col-sm-12">
                                             <label>
-                                                <textarea class="form-control" name="message" id="message" rows="5" placeholder="Message"></textarea>
+                                                <input type="text" class="form-control" name="subject" placeholder="Subject">
+                                            </label>
+                                        </li>
+                                        <li class="col-sm-12">
+                                            <label>
+                                                <textarea class="form-control" name="content"    rows="5" placeholder="Message"></textarea>
                                             </label>
                                         </li>
                                         <li class="col-sm-12">
@@ -228,5 +235,51 @@
     <script src="~/assets/js/vendors/map.js"></script>
     <script src="~/assets/js/vendors/owl.carousel.min.js"></script>
     <script src="~/assets/js/main.js"></script>
+    <script src="~/lib/toastr.js/toastr.min.js"></script>
+    <script src="~/assets/js/overrides/toastr.override.js"></script>
+
+
+    <script>
+
+        const forms = document.querySelectorAll('#frm');
+
+        forms.forEach(form => {
+            form.addEventListener('submit', function (e) {
+
+                let element = e.currentTarget;
+
+                e.preventDefault();
+
+                const fd = new FormData(element);
+
+                fetch(`@Url.Action("Contact", "Home")`, {
+                    method: 'POST',
+                    body: fd,
+                    headers: {
+
+                    }
+                })
+                    .then(response => response.json())
+                    .then(response => {
+
+                        if (response.error == false) {
+                            toastr.success(response.message, "Success");
+                            element.reset();
+                            return;
+                        }
+
+
+                        console.log(response);
+                    })
+                    .catch(e => {
+                        console.error(e);
+                    });
+
+            });
+        })
+
+    </script>
+        
+
         </body>
 </html>
