@@ -1,21 +1,26 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Services;
+using Services.Services;
 
 namespace WebUI.Controllers
 {
     public class HomeController : Controller
     {
         private readonly IContactPostService contactPostService;
+        private readonly IServiceService serviceService;
 
-        public HomeController(IContactPostService contactPostService)
+        public HomeController(IContactPostService contactPostService,
+            IServiceService serviceService)
         {
             this.contactPostService = contactPostService;
+            this.serviceService = serviceService;
         }
 
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var response = await serviceService.GetAllAsync();
+            return View(response);
         }
 
 
