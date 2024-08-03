@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Services;
 using Services.Services;
+using Services.Skills;
+using WebUI.Models;
 
 namespace WebUI.Controllers
 {
@@ -8,19 +10,31 @@ namespace WebUI.Controllers
     {
         private readonly IContactPostService contactPostService;
         private readonly IServiceService serviceService;
+        private readonly ISkillService skillService;
 
         public HomeController(IContactPostService contactPostService,
-            IServiceService serviceService)
+            IServiceService serviceService,
+            ISkillService skillService)
         {
             this.contactPostService = contactPostService;
             this.serviceService = serviceService;
+            this.skillService = skillService;
         }
 
 
         public async Task<IActionResult> Index()
         {
-            var response = await serviceService.GetAllAsync();
-            return View(response);
+            var services = await serviceService.GetAllAsync();
+            var skills = await skillService.GetAllAsync();
+
+            var vm = new HomeGetAllViewModel
+            {
+                Skills = skills,
+                Services = services
+            };
+
+
+            return View(vm);
         }
 
 
