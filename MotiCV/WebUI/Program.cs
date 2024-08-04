@@ -1,6 +1,7 @@
 using Domain.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Contexts;
+using WebUI.Filters;
 
 namespace WebUI
 {
@@ -10,7 +11,10 @@ namespace WebUI
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews(cfg =>
+            {
+                cfg.Filters.Add<GlobalExceptionFilter>();
+            });
 
             builder.Host.UseServiceProviderFactory(new IoCFactory());
 
@@ -30,6 +34,8 @@ namespace WebUI
 
 
             var app = builder.Build();
+                
+
             app.UseStaticFiles();
 
 

@@ -96,18 +96,18 @@
                             <!-- Collect the nav links, forms, and other content for toggling -->
                             <div class="collapse navbar-collapse" id="nav-tabis">
                                 <ul class="isop-filter main-nav">
-                                    <li class="active"><a asp-controller="home" asp-action="index"><i class="icon-user"></i> ABOUT ME</a></li>
-                                    <li><a asp-controller="resume" asp-action="index"><i class="icon-book-open"></i>RESUME</a></li>
-                                    <li><a asp-controller="portfolio" asp-action="index"><i class="icon-rocket"></i>PORTFOLIO</a></li>
-                                    <li><a asp-controller="blog" asp-action="index"><i class="icon-note"></i>BLOG</a></li>
-                                    <li><a asp-controller="home" asp-action="contact"><i class="icon-pencil"></i>CONTACT ME</a></li>
+                                    <li class="active"><a asp-area="admin" asp-controller="dashboard" asp-action="index"><i class="icon-note"></i>Dashboard</a></li>
+                                    <li><a asp-area="admin" asp-controller="categories" asp-action="index"><i class="icon-user"></i>Categories</a></li>
+                                    <li><a asp-area="admin" asp-controller="Blogposts" asp-action="index"><i class="icon-book-open"></i>Blogs</a></li>
+                                    <li><a asp-area="admin" asp-controller="skills" asp-action="index"><i class="icon-rocket"></i>Skills</a></li>
+                                    <li><a asp-area="admin" asp-controller="skilltypes" asp-action="index"><i class="icon-pencil"></i>Skill Types</a></li>
                                 </ul>
                                 <ul class="isop-filter main-nav">
-                                    <li class="active"><a asp-controller="home" asp-action="index"><i class="icon-user"></i> ABOUT ME</a></li>
-                                    <li><a asp-controller="resume" asp-action="index"><i class="icon-book-open"></i>RESUME</a></li>
-                                    <li><a asp-controller="portfolio" asp-action="index"><i class="icon-rocket"></i>PORTFOLIO</a></li>
-                                    <li><a asp-controller="blog" asp-action="index"><i class="icon-note"></i>BLOG</a></li>
-                                    <li><a asp-controller="home" asp-action="contact"><i class="icon-pencil"></i>CONTACT ME</a></li>
+                                    <li><a asp-area="admin" asp-controller="skillgroups" asp-action="index"><i class="icon-user"></i>Skill Groups</a></li>
+                                    <li><a asp-area="admin" asp-controller="projects" asp-action="index"><i class="icon-book-open"></i>Projects</a></li>
+                                    <li><a asp-area="admin" asp-controller="personskills" asp-action="index"><i class="icon-rocket"></i>Person Skills</a></li>
+                                    <li><a asp-area="admin" asp-controller="persons" asp-action="index"><i class="icon-note"></i>Person</a></li>
+                                    <li><a asp-area="admin" asp-controller="services" asp-action="index"><i class="icon-pencil"></i>Services</a></li>
                                 </ul>
                             </div>
                         </nav>
